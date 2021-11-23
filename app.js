@@ -1,10 +1,18 @@
 const express = require("express");
+const session = require('express-session');
+
 //creating app
 const app = express();
 
 // using JSON and URL Encoded middleware 
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(session({ 
+    secret: 'keyboard', 
+    resave: true,
+    saveUninitialized: true 
+}));
 
 //pass requests to the router middleware 
 const router = require('./routes/apis'); 
